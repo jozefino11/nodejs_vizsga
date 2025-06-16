@@ -1,0 +1,22 @@
+<html>
+    <head></head>
+  
+    <body>
+      <%- include('../header') %>
+      <div style="background-color: grey; height: 800px;">
+<div>
+    <%- include('../navbar_user') %> 
+</div>
+        <h1>File Upload</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file" required>
+          <button type="submit">Upload</button>
+        </form>
+        <div>
+          <a class="btn btn-warning" href="/home" role="button">Back</a>
+      </div>
+    </div>
+    </body>
+    
+  <%- include('../footer') %>
+</html>

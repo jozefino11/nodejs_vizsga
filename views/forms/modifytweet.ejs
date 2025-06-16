@@ -1,0 +1,21 @@
+<%- include('../header') %>
+<div>
+    <%- include('../navbar_user') %> 
+</div>
+<h3>Modify tweet page</h3>
+<form method="POST">
+    <div class="form-floating">
+        <textarea class="form-control"  id="floatingTextarea" style="height: 100px; width: 500px;" name="text"><%= tweet.text%></textarea>
+        <label for="floatingTextarea">Comments</label>
+      </div>
+
+
+      <div>
+        <button class="btn btn-primary" type="submit">Send modified tweet</button>
+    </div>
+</form>
+<div>
+    <a class="btn btn-warning" href="/profile" role="button">Back</a>
+</div>
+
+<%- include('../footer') %>

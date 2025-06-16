@@ -1,0 +1,40 @@
+<div>
+    <ul>
+        <% allUsers.forEach((user)=> { %>
+            <li style="list-style: none;">
+                
+                
+                <a class="btn btn-secondary" href="/showusertweets/<%= user.id%>"   role="button"><%= user.username%></a>
+                
+                    
+                
+            
+                <% if (user.publictweetsbutton===true) { %>
+                    
+                    <ul>
+                        <% user.mytweets.forEach((tweet)=> { %>
+                            <% if (tweet.visibility==="public") { %>  
+                            <li style="list-style: none;">
+                                <p>
+                                    <%= tweet.username %>
+                                </p>
+                                <p>
+                                    <%= tweet.text %>
+                                </p>
+                                
+                            </li>
+                            <% } %>
+    
+                            <hr />
+                        <% }) %>
+
+
+                    </ul>
+                        <% } %>
+
+            
+            </li>
+            <hr />
+        <% }) %>
+    </ul>
+</div>

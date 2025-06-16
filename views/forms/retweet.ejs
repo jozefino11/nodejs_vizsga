@@ -1,0 +1,23 @@
+<%- include('../header') %>
+<div>
+    <%- include('../navbar_user') %> 
+</div>
+<h3>Retweet page</h3>
+<form method="POST">
+    <p><%= tweet.text%></p>
+    <div class="form-floating">
+        
+        <textarea class="form-control"  id="floatingTextarea" style="height: 100px; width: 500px;" name="text"></textarea>
+        <label for="floatingTextarea">Retweet</label>
+      </div>
+
+
+      <div>
+        <button class="btn btn-primary" type="submit">Send your retweet</button>
+    </div>
+</form>
+<div>
+    <a class="btn btn-warning" href="/home" role="button">Back</a>
+</div>
+
+<%- include('../footer') %>

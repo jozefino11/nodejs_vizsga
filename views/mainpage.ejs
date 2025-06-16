@@ -1,0 +1,89 @@
+
+<%- include('header') %>
+
+<div style="background-color: grey; display: flex; flex-direction: column;">
+<div style="position: fixed; width: 100%; z-index: 0;">
+<%- include('navbar_user') %> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6" style="position: fixed; top:100px">
+    
+      <div style="margin: 10px 0">
+        <a class="btn btn-primary" href="/newtweet" role="button">New tweet</a>
+      </div>
+      <div style="margin: 10px 0">
+        <a class="btn btn-danger" href="/delmyacc" role="button">Delete my account</a>
+      </div>
+      <div style="margin: 10px 0">
+        <a class="btn btn-primary" href="/upload" role="button">New picture</a>
+      </div>
+      <div style="margin: 80px 0 0 0;">
+      <h3>You may want to follow this users:</h3>
+      <ul>
+        <% allUsers.forEach((user)=> { %>
+         <% if(user.id!==userid&&myfollowedusers.includes(user.id)===false){ %>
+            <li style="list-style: none; margin: 20px;">
+                <a class="btn btn-secondary" href=""   role="button"><%= user.username%></a>
+                <a class="btn btn-success" href="/followuser/<%= user.id%>"   role="button">Follow</a>
+            </li>
+          <% }%>
+            <% })%>
+        </ul>
+      </div>
+    </div>
+    
+    
+      <div class="col-6" style="position: relative; left: 600px; top:50px">
+        <ul>
+        <% tweets.forEach((tweet)=> { %>
+         <% if(user.id===tweet.user_id||myfollowedusers.includes(tweet.user_id)===true){ %>
+            <li style="list-style: none; margin: 20px;">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                
+                  <span style="font-weight: bold;"><%= tweet.username%></span>
+                  
+                  <% if(Date.now()-tweet.timestamp<3600000){ %>
+                    <span><%= Math.round((Date.now()-tweet.timestamp)/(1000*60))%> min</span>
+                    <% }%>
+                    <% if(Date.now()-tweet.timestamp>=3600000 && Date.now()-tweet.timestamp<86400000){ %>
+                      <span><%= Math.round((Date.now()-tweet.timestamp)/(1000*60*60))%> hours</span>
+                      <% }%>
+                      <% if(Date.now()-tweet.timestamp>=86400000) { %>
+                        <span><%= Math.round((Date.now()-tweet.timestamp)/(1000*60*60*24))%> days</span>
+                        <% }%>
+                      
+                  
+            </div>
+                <div class="card-body">
+                
+                <p>
+                    <%= tweet.text %>
+                </p>
+                <div>
+                  <% tweet.retweets.forEach((retweet)=> { %>
+                    <p><%= retweet%></p>
+                    <% })%>
+                  </div>
+                <% if(tweet.user_id===user.id){ %>
+                <a class="btn btn-danger" href="/deltweet/<%= tweet.id%>" role="button">delete</a>
+                <a class="btn btn-warning" href="/modtweet/<%= tweet.id%>" role="button">modify</a>
+                <% }%>
+                <% if(tweet.user_id!==user.id){ %>
+                  <a class="btn btn-warning" href="/retweet/<%= tweet.id%>" role="button">Retweet</a>
+                  
+                  <% }%>
+                </div>
+            </div>
+            </li>
+          <% }%>
+            <% })%>
+        </ul>
+      </div>
+
+  </div>
+</div>
+</div>
+<%- include('footer') %>

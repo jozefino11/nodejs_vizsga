@@ -1,0 +1,18 @@
+<%- include('../header') %>
+
+<form method="POST">
+<h3>Forgotten password</h3>
+<p>Write your email address:</p>
+<% if(typeof pwResetSuccess!=="undefined"){ %>
+<div class="alert alert-success" role="alert">
+The link have sent!
+</div>
+<% }%>
+
+<%- include('errors') %>
+<input type="email" class="form-control" id="email" name="email" placeholder="e-mail" />
+<button type="submit">SEND</button>
+<a href="/">Back</a>
+</form>
+
+<%- include ('../footer') %>

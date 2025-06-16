@@ -1,0 +1,16 @@
+<%- include('../header') %>
+
+<form method="POST">
+<h2>New password</h2>
+<% if(typeof resetPasswordSuccess!=="undefined"){ %>
+    <div class="alert alert-success" role="alert">
+    The password has changed succesfully!
+    </div>
+    <% }%>
+<input type="password" id="password" name="password" placeholder="password"/>
+<label for="password">New password</label>
+<button type="submit">Send</button>
+<a href="/">Back</a>
+</form>
+
+<%- include('../footer') %>

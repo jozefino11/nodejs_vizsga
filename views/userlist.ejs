@@ -1,0 +1,51 @@
+<%- include('header') %>
+<div>
+    <h2>Users public tweets:</h2>
+    <div>
+    <ul>
+        <% allUsers.forEach((user)=> { %>
+            <li style="list-style: none;">
+                
+                
+                <a class="btn btn-secondary" href="/users/<%= user.id%>"   role="button"><%= user.username%></a>
+                
+                    
+                
+            
+                <% if (user.publictweetsbutton===true) { %>
+                    
+                    <ul>
+                        <% user.mytweets.forEach((tweet)=> { %>
+                            <% if (tweet.visibility==="public") { %>  
+                            <li style="list-style: none;">
+                                <p>
+                                    <%= tweet.username %>
+                                </p>
+                                <p>
+                                    <%= tweet.text %>
+                                </p>
+                                <p>
+                                    <% tweet.retweets.forEach((retweet)=> { %>
+                                      <p><%= retweet%></p>
+                                      <% })%>
+                                    </p>
+                                
+                            </li>
+                            <% } %>
+    
+                            <hr />
+                        <% }) %>
+
+
+                    </ul>
+                        <% } %>
+
+            
+            </li>
+            <hr />
+        <% }) %>
+    </ul>
+</div>
+    <a class="btn btn-danger" href="/"   role="button">Back</a>
+</div>
+<%- include ('footer') %>

@@ -1,0 +1,56 @@
+<%- include('header') %>
+<div style="background-color: grey;">
+<%- include('navbar_user') %> 
+
+<div class="container">
+    
+    <h3 style="text-align: center;"><%= user.username%></h3>
+    
+</br>
+    <h3><%= user.username%> tweets and pictures:</h3>
+<div class="row">
+    <div class="col-6">
+        <ul>
+            <% user.mytweets.forEach((tweet)=> { %>
+                <li style="list-style: none;">
+                <div style="border: 1px solid black; padding:5px">
+                    <p>
+                        <span style="font-weight: bold;"><%= user.username%></span>
+                        <%= user.email%>
+                    </p>
+                    <p>
+                        <%= tweet.text %>
+                    </p>
+                    <a class="btn btn-danger" href="/deltweet/<%= tweet.id%>" role="button">delete</a>
+                    <a class="btn btn-warning" href="/modtweet/<%= tweet.id%>" role="button">modify</a>
+                </div>
+                </li>
+                <hr />
+            <% }) %>
+        </ul>
+
+        <ul>
+            <% user.mypictures.forEach((picture)=> { %>
+                <li style="list-style: none;">
+                <div style="border: 1px solid black; padding:5px">
+                    <img src="myuploads/<%= picture%>" style="width: 150px; height: 150px;"/>
+                    <a class="btn btn-danger" href="/delpic/<%= picture%>" role="button">delete</a>
+                </div>
+                </li>
+                <hr />
+            <% }) %>
+        </ul>
+
+        <a class="btn btn-primary" href="/home" role="button">Back</a>
+    </div>
+
+    <div class="col-6">
+        <h1>Other side</h1>
+        
+    </div>
+</div>
+
+</div>
+</div>
+<%- include('footer') %>
+
